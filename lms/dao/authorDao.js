@@ -13,6 +13,7 @@ exports.addAuthor = function(author, cb){
 
     db.query('insert into tbl_author(authorName) values(?)', [author.authorName], function(err, res){
       if(err){
+        console.log(err);
         db.rollback(function(err, res){
           cb(err, res);
         });
@@ -32,6 +33,7 @@ exports.updateAuthor = function(author, cb){
 
     db.query('update tbl_author set authorName = ? WHERE authorId = ?', [ author.authorName, author.authorId], function(err, res){
       if(err){
+        console.log(err);
         db.rollback(function(err, res){
           cb(err, res);
         });
@@ -51,6 +53,7 @@ exports.deleteAuthor = function(authorId, cb){
     
     db.query('delete from tbl_author where authorId = ?', [authorId], function(err, res){
       if(err){
+        console.log(err);
         db.rollback(function(err, res){
           cb(err, res);
         });

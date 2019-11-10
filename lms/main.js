@@ -1,7 +1,9 @@
 var bodyParser = require('body-parser') // parses json
 var express = require('express'); // create a server and define rest endpoints
 var app = express(); // constructor for express, get the "main app"
+var cors = require('cors');
 
+app.use(cors());
 // parse application/x-www-form-urlencoded
 // encode and decode URL, since its ascii only- special chars will not work unencoded
 app.use(bodyParser.urlencoded({ extended: false }));

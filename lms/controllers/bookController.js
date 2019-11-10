@@ -26,13 +26,13 @@ routes.put('/book/:id',function(req, res){
 
 routes.post('/book', function(req, res){
   var book = req.body;
-  bookDao.addBook(book, function(err, result){
+  bookDao.addBook(book, function(err, createresult){
     if(err){
       res.status(400);
-      res.send('Add Book Failed!');
+      res.send(createresult);
     }
     res.status(201);
-    res.send('Add Book Successful!');
+    res.send(createresult);
   });
 
 });
@@ -40,9 +40,11 @@ routes.post('/book', function(req, res){
 routes.delete('/book/:id', function(req, res){
   bookDao.removeBook(req.params.id, function(err, result){
     if(err){
+      console.log(err);
       res.status(400);
       res.send('Delete Book Failed!');
     }
+    res.status(204)
     res.send('Delete Book Successful!');
   });
 });
